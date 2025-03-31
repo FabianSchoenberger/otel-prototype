@@ -24,7 +24,7 @@ class GameOfLife(
 
         for (x in 0 until size) {
             for (y in 0 until size) {
-                val alive = neighbors(x, y).alive()
+                val alive = neighbors(x, y)
                 g[x][y] = when (alive) {
                     0, 1 -> false
                     2 -> grid[x][y]
@@ -41,20 +41,16 @@ class GameOfLife(
         x: Int,
         y: Int
     ) = span("neighbors") {
-        val array = Array(8) { false }
-        var i = 0;
+        var count = 0
         for (nx in x - 1..x + 1) {
             for (ny in y - 1..y + 1) {
                 if (nx == x && ny == y) continue
 
-                array[i++] = grid[nx.mod(size)][ny.mod(size)]
+                if (grid[nx.mod(size)][ny.mod(size)])
+                    count++
             }
         }
-        return@span array
-    }
-
-    private fun Array<Boolean>.alive(): Int {
-        return count { it }
+        return@span count
     }
 
     companion object {
