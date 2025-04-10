@@ -1,5 +1,5 @@
 import kotlinx.coroutines.runBlocking
 
-actual fun keepAlive() = runBlocking {
+actual fun await() = runBlocking {
     exporter.await()
 }

@@ -1,1 +1,1 @@
-expect fun keepAlive()
+expect fun await()
