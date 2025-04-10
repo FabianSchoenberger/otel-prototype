@@ -28,6 +28,7 @@ kotlin {
     }
     js {
         nodejs()
+        useCommonJs()
         binaries.executable()
     }
     linuxX64 {
@@ -41,6 +42,11 @@ kotlin {
             implementation("io.opentelemetry.kotlin.api:all:1.0.570")
             implementation("io.opentelemetry.kotlin.sdk:sdk-trace:1.0.570")
             implementation("com.infendro:otlp-exporter:1.0.0")
+
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+        }
+        jsMain.dependencies {
+            implementation("org.jetbrains.kotlin-wrappers:kotlin-node:2025.4.7-22.13.10")
         }
     }
 }

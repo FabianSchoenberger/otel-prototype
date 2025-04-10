@@ -11,4 +11,5 @@ fun main() {
 
     // makes sure all leftover spans are exported
     processor.shutdown()
+    keepAlive()
 }
