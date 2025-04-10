@@ -1,6 +1,7 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 plugins {
-    kotlin("jvm") version "2.1.10"
-    kotlin("plugin.serialization") version "2.1.10"
+    kotlin("multiplatform") version "2.1.10"
 }
 
 group = "com.infendro"
@@ -18,12 +19,28 @@ repositories {
     mavenLocal()
 }
 
-dependencies {
-    implementation("io.opentelemetry.kotlin.api:all:1.0.570")
-    implementation("io.opentelemetry.kotlin.sdk:sdk-trace:1.0.570")
-    implementation("com.infendro:otlp-exporter:1.0.0")
-}
-
 kotlin {
-    jvmToolchain(23)
+    jvm {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        mainRun {
+            mainClass.set("MainKt")
+        }
+    }
+    js {
+        nodejs()
+        binaries.executable()
+    }
+    linuxX64 {
+        binaries.executable {
+            entryPoint = "main"
+        }
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation("io.opentelemetry.kotlin.api:all:1.0.570")
+            implementation("io.opentelemetry.kotlin.sdk:sdk-trace:1.0.570")
+            implementation("com.infendro:otlp-exporter:1.0.0")
+        }
+    }
 }
