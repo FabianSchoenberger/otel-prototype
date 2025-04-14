@@ -1,1 +1,1 @@
-rootProject.name = "otel-prototype"
+rootProject.name = "prototype"

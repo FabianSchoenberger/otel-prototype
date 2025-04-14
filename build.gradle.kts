@@ -4,7 +4,7 @@ plugins {
     kotlin("multiplatform") version "2.1.10"
 }
 
-group = "com.infendro"
+group = "com.infendro.otel"
 version = "1.0.0"
 
 repositories {
@@ -41,7 +41,7 @@ kotlin {
         commonMain.dependencies {
             implementation("io.opentelemetry.kotlin.api:all:1.0.570")
             implementation("io.opentelemetry.kotlin.sdk:sdk-trace:1.0.570")
-            implementation("com.infendro:otlp-exporter:1.0.0")
+            implementation("com.infendro.otel:otlp-exporter:1.0.0")
 
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
         }
