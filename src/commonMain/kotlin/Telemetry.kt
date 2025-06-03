@@ -6,7 +6,7 @@ import io.opentelemetry.kotlin.sdk.trace.SpanProcessor
 import io.opentelemetry.kotlin.sdk.trace.export.BatchSpanProcessor
 import kotlinx.datetime.Clock
 
-val exporter = OtlpExporter()
+val exporter = OtlpExporter("http://localhost:4318", "prototype")
 val processor: SpanProcessor = BatchSpanProcessor.builder(exporter).build()
 val provider = SdkTracerProvider.builder().addSpanProcessor(processor).build()
 val tracer = provider.tracerBuilder("").build()
